@@ -1,0 +1,6 @@
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\Double-Ended-Q\bin\Debug\Double-Ended-Q.dll
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\Double-Ended-Q\bin\Debug\Double-Ended-Q.pdb
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\Double-Ended-Q\obj\Debug\Double-Ended-Q.csprojAssemblyReference.cache
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\Double-Ended-Q\obj\Debug\Double-Ended-Q.csproj.CoreCompileInputs.cache
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\Double-Ended-Q\obj\Debug\Double-Ended-Q.dll
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\Double-Ended-Q\obj\Debug\Double-Ended-Q.pdb

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Double-Ended-Q", "Double-Ended-Q\Double-Ended-Q.csproj", "{785DECA6-0BF0-4352-B362-F3C49D8FFF2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueUnitTest", "QueueUnitTest\QueueUnitTest.csproj", "{9DBBE7C4-2035-411B-9D38-23E11E2F93B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{785DECA6-0BF0-4352-B362-F3C49D8FFF2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785DECA6-0BF0-4352-B362-F3C49D8FFF2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785DECA6-0BF0-4352-B362-F3C49D8FFF2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785DECA6-0BF0-4352-B362-F3C49D8FFF2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DBBE7C4-2035-411B-9D38-23E11E2F93B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DBBE7C4-2035-411B-9D38-23E11E2F93B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DBBE7C4-2035-411B-9D38-23E11E2F93B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DBBE7C4-2035-411B-9D38-23E11E2F93B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AFB10E7-8ECB-4058-9B55-9F9D1F783034}
+	EndGlobalSection
+EndGlobal

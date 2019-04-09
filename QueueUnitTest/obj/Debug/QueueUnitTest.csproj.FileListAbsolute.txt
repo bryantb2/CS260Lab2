@@ -1,0 +1,16 @@
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\QueueUnitTest.dll
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\QueueUnitTest.pdb
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\Double-Ended-Q.dll
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\nunit.framework.dll
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\Double-Ended-Q.pdb
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\nunit.framework.pdb
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\nunit.framework.xml
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\obj\Debug\QueueUnitTest.csprojAssemblyReference.cache
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\obj\Debug\QueueUnitTest.csproj.CoreCompileInputs.cache
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\obj\Debug\QueueUnitTest.csproj.CopyComplete
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\obj\Debug\QueueUnitTest.dll
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\obj\Debug\QueueUnitTest.pdb
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\NUnit3.TestAdapter.dll
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\NUnit3.TestAdapter.pdb
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\nunit.engine.dll
+D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\nunit.engine.api.dll
