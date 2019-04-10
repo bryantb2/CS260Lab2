@@ -75,12 +75,12 @@ namespace Double_Ended_Q
                 }
                 else
                 {
-                    int endValue = queue[end1];
+                    int endValue = queue[end2];
                     if (this.IsEmpty() != true)
                     {
                         end2--; //only decrements if the ends are not on the same
                     }
-                    return end2;
+                    return endValue;
                 }
             }
             set
@@ -89,7 +89,7 @@ namespace Double_Ended_Q
                 {
                     DoubleQueueSize();
                     //queue[++end2] = value; //increments BEFORE setting, so as to not overwrite
-                    queue[end2] = value;
+                    queue[++end2] = value;
                 }
                 else if (IsEmpty() == true)
                 {
@@ -184,23 +184,23 @@ namespace Double_Ended_Q
                     newArray[newArrayCounter] = queue[i]; //starting at the mid-point for each array
                     newArrayCounter--;
                 }
-                newArrayCounter = newArrayMidPoint; //resetting the counter
+                newArrayCounter = (newArrayMidPoint + 1); //resetting the counter
                 for (int i = (oldArrayMidPoint + 1); i < oldArraySize; i++) //copying values from the middle to the RIGHT
                 {
                     newArray[newArrayCounter] = queue[i]; //starting at the mid-point for each array
                     newArrayCounter++;
                 }
                 //determining how much the ends need to be moved in the new array
-                if ((newArraySize % 2) == 0)
+                if ((oldArraySize % 2) == 0)
                 {
                     int endDisplacement = (oldArraySize / 2);
                     end2 += endDisplacement;
-                    end1 -= endDisplacement;
+                    end1 += endDisplacement;
                 }
-                else if ((newArraySize % 2) != 0)
+                else if ((oldArraySize % 2) != 0)
                 {
                     //this process is done in the event that the doubled size is uneven, requiring one end to be 
-                    decimal endDisplacement = (oldArraySize / 2);
+                    double endDisplacement = (oldArraySize / 2);
                     end2 += (int)(Math.Round(endDisplacement));
                     end1 -= (int)(Math.Floor(endDisplacement));
                 }
