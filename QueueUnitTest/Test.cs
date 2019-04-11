@@ -15,6 +15,7 @@ namespace QueueUnitTest
         DoubleQ qDefined;
         DoubleQ qDefined2;
         DoubleQ fullQ;
+        DoubleQ fullQOdd;
 
         [SetUp]
         public void SetUp()
@@ -23,6 +24,7 @@ namespace QueueUnitTest
             qDefined = new DoubleQ(10);
             qDefined2 = new DoubleQ(10);
             fullQ = new DoubleQ("fullQueue");
+            fullQOdd = new DoubleQ("oddNumbered","queue");
         }
 
         [Test]
@@ -35,7 +37,6 @@ namespace QueueUnitTest
         public void TestingGetSetLeft()
         {
             //test getter when array is empty (should throw an exception)
-            //test the setter when array is empty
             try
             {
                 int leftSideValue = qDefault.Left;
@@ -69,6 +70,25 @@ namespace QueueUnitTest
             getLeft = fullQ.Left;
             Assert.AreEqual(3, getLeft);
         }
+
+        [Test]
+        public void TestingLeftSideWrap()
+        {
+            //Testing to see if left side will wrap around array successfully
+            //Filling queue object via for loop
+            for (int i = 0; i < 5; i++)
+                {
+                    qDefined.Left = i;
+                }
+            qDefined.Left = 7; //this should wrap the queue
+            qDefined.Left = 17;
+            int leftValue = qDefined.Left;
+            Assert.AreEqual(17, leftValue);
+            leftValue = qDefined.Left;
+            Assert.AreEqual(7, leftValue);
+            Assert.AreEqual(true, qDefined.IsWrapped);
+        }
+
 
         [Test]
         public void TestingGetSetRight()
@@ -107,10 +127,10 @@ namespace QueueUnitTest
             leftUsedTestQ.Right = 3;
             getRight = fullQ.Right;
             Assert.AreEqual(3, getRight);
-        }
+        } 
 
         [Test]
-        public void TestingQDouble()
+        public void TestingQDoubleEvenQueue()
         {
             //testing to see if the size doubles when adding to a full queue
             int preDoubleSize = fullQ.Size;
@@ -121,13 +141,26 @@ namespace QueueUnitTest
             Assert.AreEqual(-3, rightValue); //testing to see if expanded queue returns previously added value
         }
 
-        /*
+        [Test]
+        public void TestingQDoubleOddQueue()
+        {
+            //testing to see if the size doubles when adding to a full queue with an odd number of elements
+            int preDoubleSize = fullQOdd.Size;
+            fullQOdd.Right = -3;
+            int postDoubleSize = fullQOdd.Size;
+            int rightValue = fullQOdd.Right;
+            Assert.AreEqual(postDoubleSize, (preDoubleSize * 2));
+            Assert.AreEqual(-3, rightValue); //testing to see if expanded queue returns previously added value
+        }
+        
         [Test]
         public void IsEmptyTest()
         {
             Assert.AreEqual(true, qDefault.IsEmpty());
             Assert.AreEqual(true, qDefined.IsEmpty());
             //ADD TEST FOR WHEN FALSE
+            Assert.AreNotEqual(true, fullQ);
+            Assert.AreNotEqual(true, fullQOdd);
         }
 
         [Test]
@@ -136,6 +169,8 @@ namespace QueueUnitTest
             Assert.AreEqual(false, qDefault.IsFull());
             Assert.AreEqual(false, qDefined.IsFull());
             //ADD TEST FOR WHEN TRUE
-        }*/
+            Assert.AreNotEqual(false, fullQ);
+            Assert.AreNotEqual(false, fullQOdd);
+        }
     }
 }

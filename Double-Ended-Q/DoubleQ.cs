@@ -15,9 +15,11 @@ namespace Double_Ended_Q
         private int valueCount = 0;
         private int size = 0;
 
-        //tracking which one was used first
+        //tracking which one was used first and if the array has wrapped
         private bool hasRightBeenUsed = false;
+        private bool hasRightWrapped = false;
         private bool hasLeftBeenUsed = false;
+        private bool hasLeftWrapped = false;
 
         //Default Constructor
         public DoubleQ()
@@ -25,7 +27,14 @@ namespace Double_Ended_Q
             queue = new int[100];
             size = 100;
         }
-        
+
+        //User-specificed Constructor
+        public DoubleQ(int arraySize)
+        {
+            queue = new int[arraySize]; //DO NOT FORGET DATA VALIDATION
+            size = arraySize;
+        }
+
         //TEST ONLY CONSTRUCTOR!!!!!!!!!!!
         public DoubleQ(string h)
         {
@@ -46,15 +55,42 @@ namespace Double_Ended_Q
             end2 = (size - 1);
         }
 
-        //User-specificed Constructor
-        public DoubleQ(int arraySize)
+        public DoubleQ(string a, string b)
         {
-            queue = new int[arraySize]; //DO NOT FORGET DATA VALIDATION
-            size = arraySize;
+            queue = new int[11] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10};
+            size = 11;
+            int arrayMidPoint = (size / 2);
+            queue[arrayMidPoint] = -5;
+            if (a == "hasRightBeenUsed")
+            {
+
+                hasRightBeenUsed = true;
+            }
+            else if (b == "hasLeftBeenUsed")
+            {
+                hasLeftBeenUsed = true;
+            }
+            end1 = 0;
+            end2 = (size - 1);
         }
 
-        //MAKE ALL GET AND SET VALUES USING END1 and END2 TO FOLLOW POST INCREMENTS!!!!!
-        //MUST BE CAPABLE OF IDNEXING
+        //TEST PROPERTY!!!!
+        public bool IsWrapped
+        {
+            get
+            {
+                bool isWrapped = false;
+                if (hasLeftWrapped == true) //|| this.hasRightBeenUsed == true)
+                {
+                    return hasLeftWrapped;
+                }
+                else
+                {
+
+                    return isWrapped;
+                }
+            }
+        }
 
         //Properties
         public int Size
@@ -99,7 +135,6 @@ namespace Double_Ended_Q
                     queue[arrayMidPoint] = value;
                     end2 = arrayMidPoint;
                     end1 = arrayMidPoint;
-                    hasRightBeenUsed = true;
                 }
                 else if (hasLeftBeenUsed==true && hasRightBeenUsed == false)
                 {
@@ -125,9 +160,23 @@ namespace Double_Ended_Q
                 else
                 {
                     int endValue = queue[end1];
-                    if (this.IsEmpty() != true)
+                    //test if the array is empty
+                        //if not, determine if the end1 is on the left, right, or end of right
+                    if (IsEmpty() != true)
                     {
-                        end1--; //only decrements if the ends are not on the same value
+                        if (end1 < end2)//if on left side
+                        {
+                            end1++; //only decrements if the ends are not on the same value
+                        }
+                        else if(end1 == (this.size-1)) //if on the end of the right side
+                        {
+                            end1 = 0; //sets it to the end of the left side
+                            hasLeftWrapped = false;
+                        }
+                        else if (end1 > end2)
+                        {
+                            end1++;
+                        }
                     }
                     return endValue;
                 }
@@ -136,23 +185,35 @@ namespace Double_Ended_Q
             {
                 if (IsFull() == true)
                 {
-                    DoubleQueueSize();
+                    DoubleQueueSize(); //handles if a wrapped or unwrapped queue is full
                     queue[--end1] = value; //decrements BEFORE setting, so as to not overwrite
                 }
-                else if (IsEmpty() == true)
+                else if (IsEmpty() == true && hasLeftBeenUsed == false && hasRightBeenUsed == false)
                 {
                     //the ==> end1 & end2 <== indexers are not moved to ensure that it can still access the current value
                     int arrayMidPoint = (size / 2); //finds the midpoint of ANY queue size
                     queue[arrayMidPoint] = value;
                     end1 = arrayMidPoint;
                     end2 = arrayMidPoint;
-                    hasLeftBeenUsed = true;
                 }
+                //tests to see if the array has wrapped
+                else if (hasLeftWrapped == true)
+                {
+                    queue[--end1] = value;
+                }
+                //testing to see if current position of end1 is at the end of the Queue, since index cannot be negative!
+                else if (end1 == 0)
+                {
+                    end1 = (size - 1);
+                    queue[end1] = value;
+                    hasLeftWrapped = true;
+                }
+                //moves left away from midpoint before assigning value, to avoid overwriting data
                 else if (hasRightBeenUsed == true && hasLeftBeenUsed == false)
                 {
-                    end1--;
-                    queue[end1] = value;
+                    queue[--end1] = value; //moves end1 to the left before assigning value, to avoid overwriting data
                 }
+                //executes if the array is not full, not empty, has not wrapped, and the left setter has been moved away from midpoint
                 else
                 {
                     queue[--end1] = value; //decrements indexer BEFORE setting value, so as to not overwrite
@@ -234,8 +295,6 @@ namespace Double_Ended_Q
             bool isEmpty = false;
             if (end1 == end2) //if the ends are equal, it means that there are no values
             {
-                hasRightBeenUsed = false; //if it is empty, reeset has right/left been used
-                hasLeftBeenUsed = false;
                 return isEmpty = true;
             }
             return isEmpty;
