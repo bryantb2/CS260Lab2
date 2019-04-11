@@ -12,7 +12,6 @@ namespace Double_Ended_Q
         private int end1; //left side of the queue
         private int end2; //right side of the queue
         private int[] queue;
-        private int valueCount = 0;
         private int size = 0;
 
         //tracking which one was used first and if the array has wrapped
@@ -57,7 +56,7 @@ namespace Double_Ended_Q
 
         public DoubleQ(string a, string b)
         {
-            queue = new int[11] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10};
+            queue = new int[11] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
             size = 11;
             int arrayMidPoint = (size / 2);
             queue[arrayMidPoint] = -5;
@@ -79,15 +78,13 @@ namespace Double_Ended_Q
         {
             get
             {
-                bool isWrapped = false;
-                if (hasLeftWrapped == true) //|| this.hasRightBeenUsed == true)
+                if (hasLeftWrapped == true || hasRightWrapped == true) //|| this.hasRightBeenUsed == true)
                 {
-                    return hasLeftWrapped;
+                    return true;
                 }
                 else
                 {
-
-                    return isWrapped;
+                    return false;
                 }
             }
         }
@@ -112,9 +109,21 @@ namespace Double_Ended_Q
                 else
                 {
                     int endValue = queue[end2];
-                    if (this.IsEmpty() != true)
+                    if (IsEmpty() != true)
                     {
-                        end2--; //only decrements if the ends are not on the same
+                        if (end1 < end2)//if on right side
+                        {
+                            end2--; //decrements right side left if not wrapped
+                        }
+                        else if (end2 == 0) //if on the end of the right side
+                        {
+                            end2 = (this.size - 1); //sets it to the end of the left side
+                            hasRightWrapped = false;
+                        }
+                        else if (end1 > end2)
+                        {
+                            end2--;
+                        }
                     }
                     return endValue;
                 }
@@ -123,23 +132,33 @@ namespace Double_Ended_Q
             {
                 if (IsFull() == true)
                 {
-                    DoubleQueueSize();
-                    //queue[++end2] = value; //increments BEFORE setting, so as to not overwrite
-                    queue[++end2] = value;
+                    DoubleQueueSize(); //doubles queue and handles the unwrapping of a wrapped 
+                    queue[++end2] = value; //increments BEFORE setting, so as to not overwrite
                 }
-                else if (IsEmpty() == true)
+                else if (IsEmpty() == true && hasLeftBeenUsed == false && hasRightBeenUsed == false)
                 {
                     //the ==> end1 & end2 <== indexers are not moved to ensure that it can still access the current value
                     //finds the midpoint of ANY queue size
-                    int arrayMidPoint = (size / 2);
+                    int arrayMidPoint = (size / 2); //midpoint is always the smaller half of an uneven number
                     queue[arrayMidPoint] = value;
                     end2 = arrayMidPoint;
                     end1 = arrayMidPoint;
                 }
+                //tests to see if the array has wrapped
+                else if (hasRightWrapped == true)
+                {
+                    queue[++end2] = value;
+                }
+                //testing to see if current position of end1 is at the end of the Queue, since index cannot be negative!
+                else if (end2 == (this.size - 1))
+                {
+                    end2 = 0;
+                    queue[end2] = value;
+                    hasRightWrapped = true;
+                }
                 else if (hasLeftBeenUsed==true && hasRightBeenUsed == false)
                 {
-                    end2++;
-                    queue[end2] = value; 
+                    queue[++end2] = value; //moves end2 to the right before assigning value, to avoid overwriting data 
                 }
                 else
                 {

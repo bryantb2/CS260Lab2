@@ -80,13 +80,14 @@ namespace QueueUnitTest
                 {
                     qDefined.Left = i;
                 }
-            qDefined.Left = 7; //this should wrap the queue
-            qDefined.Left = 17;
+            qDefined.Left = 7; 
+            qDefined.Left = 17; //this should wrap the queue
+            Assert.AreEqual(true, qDefined.IsWrapped);
             int leftValue = qDefined.Left;
             Assert.AreEqual(17, leftValue);
             leftValue = qDefined.Left;
             Assert.AreEqual(7, leftValue);
-            Assert.AreEqual(true, qDefined.IsWrapped);
+            Assert.AreEqual(false, qDefined.IsWrapped);
         }
 
 
@@ -122,12 +123,31 @@ namespace QueueUnitTest
             getRight = qDefined2.Right;
             Assert.AreEqual(7, getRight);
 
-            //setting and getting from an object that has simulated the right setter being used first
+            //setting and getting from an object that has simulated the left setter being used first
             DoubleQ leftUsedTestQ = new DoubleQ("hasLeftBeenUsed");
             leftUsedTestQ.Right = 3;
             getRight = fullQ.Right;
             Assert.AreEqual(3, getRight);
-        } 
+        }
+
+        [Test]
+        public void TestingRightSideWrap()
+        {
+            //Testing to see if left side will wrap around array successfully
+            //Filling queue object via for loop
+            for (int i = 0; i < 5; i++)
+            {
+                qDefined.Right = i;
+            }
+            qDefined.Right = 7;
+            qDefined.Right = 17; //this should wrap the queue
+            Assert.AreEqual(true, qDefined.IsWrapped);
+            int rightValue = qDefined.Right;
+            Assert.AreEqual(17, rightValue);
+            rightValue = qDefined.Right;
+            Assert.AreEqual(7, rightValue);
+            Assert.AreEqual(false, qDefined.IsWrapped);
+        }
 
         [Test]
         public void TestingQDoubleEvenQueue()
