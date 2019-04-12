@@ -253,5 +253,47 @@ namespace QueueUnitTest
             output = qDefined.PrintQueueLeftToRight();
             Assert.AreEqual("9 8 7 6 5 4 3 2 1 0", output);
         }
+
+        [Test]
+        public void AdditionalWrapTesting()
+        {
+            //final test on wrap logic, using a queue of size of
+            //10, adding items through both Left and Right setters 
+            //to determine if everything behaves normally
+
+            //this will fill queue with 6 items and wrap
+            for (int i = 0; i < 7; i++)
+            {
+                qDefined.Left = i;
+            }
+            Assert.AreEqual(true, qDefined.IsWrapped);
+            for (int i = 1; i < 4; i++)
+            {
+                qDefined.Right = i;
+            }
+            Assert.AreEqual(10, qDefined.Size);
+            Assert.AreEqual(true, qDefined.IsFull());
+            Assert.AreEqual(false, qDefined.IsEmpty());
+            Assert.AreEqual("6 5 4 3 2 1 0 1 2 3", qDefined.PrintQueueLeftToRight());
+            
+            //now going to empty the array and check all the properties again
+            for (int i = 10; i < 0; i--)
+            {
+                int result = qDefined.Left; 
+            }
+            Assert.AreEqual(10, qDefined.Size);
+            Assert.AreEqual(false, qDefined.IsFull());
+            Assert.AreEqual(true, qDefined.IsEmpty());
+            try
+            {
+                int result = qDefined.Left;
+                Assert.Fail("The left getter should throw an exception for trying to get values out of an empty queue.");
+            }
+            catch(Exception)
+            {
+                Assert.Pass("The getter threw an exception for trying to get values out of an empty queue");
+            }
+
+        }
     }
 }

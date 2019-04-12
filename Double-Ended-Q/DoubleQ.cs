@@ -171,10 +171,6 @@ namespace Double_Ended_Q
                     queue[end2] = value;
                     hasRightWrapped = true;
                 }
-                else if (hasLeftBeenUsed==true && hasRightBeenUsed == false)
-                {
-                    queue[++end2] = value; //moves end2 to the right before assigning value, to avoid overwriting data 
-                }
                 else
                 {
                     queue[++end2] = value; //increments the right and sets the element equal to the user specified value
@@ -245,11 +241,6 @@ namespace Double_Ended_Q
                     end1 = (size - 1);
                     queue[end1] = value;
                     hasLeftWrapped = true;
-                }
-                //moves left away from midpoint before assigning value, to avoid overwriting data
-                else if (hasRightBeenUsed == true && hasLeftBeenUsed == false)
-                {
-                    queue[--end1] = value; //moves end1 to the left before assigning value, to avoid overwriting data
                 }
                 //executes if the array is not full, not empty, has not wrapped, and the left setter has been moved away from midpoint
                 else
