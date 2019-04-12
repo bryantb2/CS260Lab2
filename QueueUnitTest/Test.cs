@@ -172,7 +172,56 @@ namespace QueueUnitTest
             Assert.AreEqual(postDoubleSize, (preDoubleSize * 2));
             Assert.AreEqual(-3, rightValue); //testing to see if expanded queue returns previously added value
         }
-        
+
+        [Test]
+        public void TestingWrappedQueue()
+        {
+            int originalSize = qDefined.Size;
+            for(int i = 0; i <qDefined.Size; i++)
+            {
+                qDefined.Right = i;
+            }
+            Assert.AreEqual(true, qDefined.IsWrapped);
+            qDefined.Right = -1; //this should cause the wrapped
+            Assert.AreEqual(-1, qDefined.Right); //seeing if the end2 value is put in the right spot following the double
+            Assert.AreEqual(false, qDefined.IsWrapped); //determining that the array is no longer wrapped
+            Assert.AreEqual(qDefined.Size, (originalSize * 2)); //determing if the array doubled
+        }
+        [Test]
+        public void TestingWrappedQueueReturnBehavior()
+        {
+            //this test will determine if a queue can be filled with value, wrapped, 
+            //and then unwrapped with the return values in the same order
+            int originalSize = qDefined.Size;
+            int[] originalInput = new int[10];
+            for (int i = 0; i < qDefined.Size; i++)
+            {
+                qDefined.Right = i;
+                originalInput[i] = i;
+            }
+            Assert.AreEqual(true, qDefined.IsWrapped); //this should be true because end2 will wrap around to end1
+            int[] finalOutput = new int[10];
+            //now take queue values out and put into different array
+            for (int i = 0; i < qDefined.Size; i++)
+            {
+                finalOutput[i] = qDefined.Right;
+            }
+            //this next part will reverse the ouput array into the original order
+            int swapValueOne;
+            int swapValueTwo;
+            for (int i = 0; i < (qDefined.Size / 2); i++)
+            {
+                swapValueOne = finalOutput[i]; //stores first value to be swapped
+                swapValueTwo = finalOutput[qDefined.Size - (i+1)]; //stores second value to be stopped
+                finalOutput[i] = swapValueTwo; //moves end value to front
+                finalOutput[qDefined.Size - (i + 1)] = swapValueOne;
+            }
+            Assert.AreNotEqual(qDefined.Size, (originalSize * 2)); //checking to make sure array did not expand
+            Assert.AreEqual(originalInput, finalOutput);
+            Assert.AreEqual(finalOutput[9], originalInput[9]);
+            Assert.AreEqual(finalOutput[0], originalInput[0]);
+        }
+
         [Test]
         public void IsEmptyTest()
         {
@@ -191,6 +240,18 @@ namespace QueueUnitTest
             //ADD TEST FOR WHEN TRUE
             Assert.AreNotEqual(false, fullQ);
             Assert.AreNotEqual(false, fullQOdd);
+        }
+
+        [Test]
+        public void TestingPrintQueue()
+        {
+            string output = "";
+            for (int i = 0; i < qDefined.Size; i++)
+            {
+                qDefined.Left = i;
+            }
+            output = qDefined.PrintQueueLeftToRight();
+            Assert.AreEqual("9 8 7 6 5 4 3 2 1 0", output);
         }
     }
 }

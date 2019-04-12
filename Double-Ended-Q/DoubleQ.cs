@@ -34,13 +34,19 @@ namespace Double_Ended_Q
             size = arraySize;
         }
 
-        //TEST ONLY CONSTRUCTOR!!!!!!!!!!!
+        //<---------------- Beginning of Test Only-Constructors and Properties ------------->
+
+        //constructors below enable and disable certain properties
+        //to simulate either an even or uneven array that is 
+        //full, has had both setters used, and had its ends 
+        //set to the proper place
         public DoubleQ(string h)
         {
+            //made to test even array size behavior
             queue = new int[] {0,1,2,3,4,5,6,7,8,9};
             size = 10;
             int arrayMidPoint = (size / 2);
-            queue[arrayMidPoint] = -5;
+            queue[arrayMidPoint] = 5;
             if (h == "hasRightBeenUsed")
             {
 
@@ -56,13 +62,13 @@ namespace Double_Ended_Q
 
         public DoubleQ(string a, string b)
         {
+            //made to test uneven array size behavior
             queue = new int[11] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
             size = 11;
             int arrayMidPoint = (size / 2);
-            queue[arrayMidPoint] = -5;
+            queue[arrayMidPoint] = 5;
             if (a == "hasRightBeenUsed")
             {
-
                 hasRightBeenUsed = true;
             }
             else if (b == "hasLeftBeenUsed")
@@ -73,7 +79,17 @@ namespace Double_Ended_Q
             end2 = (size - 1);
         }
 
-        //TEST PROPERTY!!!!
+        //<---------------- End of Test Only-Constructors and Properties ------------->
+
+        //Properties
+        public int Size
+        {
+            get
+            {
+                return this.size;
+            }
+        }
+
         public bool IsWrapped
         {
             get
@@ -89,15 +105,6 @@ namespace Double_Ended_Q
             }
         }
 
-        //Properties
-        public int Size
-        {
-            get
-            {
-                return this.size;
-            }
-        }
-
         public int Right
         {
             get
@@ -108,21 +115,29 @@ namespace Double_Ended_Q
                 }
                 else
                 {
+                    int arrayMidpoint = (this.size / 2);
                     int endValue = queue[end2];
                     if (IsEmpty() != true)
                     {
-                        if (end1 < end2)//if on right side
+                        /*if (end1 < end2)//if on right side
                         {
                             end2--; //decrements right side left if not wrapped
-                        }
-                        else if (end2 == 0) //if on the end of the right side
+                        }*/
+                        if ((end2 == 0 && IsWrapped == false) || end1 == end2)
                         {
-                            end2 = (this.size - 1); //sets it to the end of the left side
+                            end1 = arrayMidpoint; //resets to middle since it occupies the same spot as end2
+                            end2 = arrayMidpoint;
+                            hasLeftBeenUsed = false;
+                            hasRightBeenUsed = false;
+                        }
+                        else if (end2 == 0) //true if the data is wrapped and end1 is on the right side
+                        {
+                            end2 = (this.size -1); //sets it to the end of the left side
                             hasRightWrapped = false;
                         }
-                        else if (end1 > end2)
+                        else if (end1 < end2 || end1 > end2)//end2 is in normal position OR wrapped
                         {
-                            end2--;
+                            end2--; //only decrements if the ends are not on the same value
                         }
                     }
                     return endValue;
@@ -135,7 +150,7 @@ namespace Double_Ended_Q
                     DoubleQueueSize(); //doubles queue and handles the unwrapping of a wrapped 
                     queue[++end2] = value; //increments BEFORE setting, so as to not overwrite
                 }
-                else if (IsEmpty() == true && hasLeftBeenUsed == false && hasRightBeenUsed == false)
+                else if (IsEmpty() == true)
                 {
                     //the ==> end1 & end2 <== indexers are not moved to ensure that it can still access the current value
                     //finds the midpoint of ANY queue size
@@ -178,23 +193,27 @@ namespace Double_Ended_Q
                 }
                 else
                 {
+                    int arrayMidpoint = (this.size / 2);
                     int endValue = queue[end1];
                     //test if the array is empty
-                        //if not, determine if the end1 is on the left, right, or end of right
+                        //if not, determine if the end1 is on the end of left, left, right, or end of right
                     if (IsEmpty() != true)
                     {
-                        if (end1 < end2)//if on left side
+                        if ((end1 == (this.size-1) && IsWrapped == false) || end1 == end2)
                         {
-                            end1++; //only decrements if the ends are not on the same value
+                            end1 = arrayMidpoint; //resets to middle since it occupies the same spot as end2
+                            end2 = arrayMidpoint;
+                            hasLeftBeenUsed = false;
+                            hasRightBeenUsed = false;
                         }
-                        else if(end1 == (this.size-1)) //if on the end of the right side
+                        else if (end1 == (this.size - 1)) //true if the data is wrapped and end1 is on the right side
                         {
                             end1 = 0; //sets it to the end of the left side
                             hasLeftWrapped = false;
                         }
-                        else if (end1 > end2)
+                        else if (end1 < end2 || end1 > end2)//end1 is in normal position OR wrapped
                         {
-                            end1++;
+                            end1++; //only decrements if the ends are not on the same value
                         }
                     }
                     return endValue;
@@ -207,7 +226,7 @@ namespace Double_Ended_Q
                     DoubleQueueSize(); //handles if a wrapped or unwrapped queue is full
                     queue[--end1] = value; //decrements BEFORE setting, so as to not overwrite
                 }
-                else if (IsEmpty() == true && hasLeftBeenUsed == false && hasRightBeenUsed == false)
+                else if (IsEmpty() == true)
                 {
                     //the ==> end1 & end2 <== indexers are not moved to ensure that it can still access the current value
                     int arrayMidPoint = (size / 2); //finds the midpoint of ANY queue size
@@ -300,6 +319,8 @@ namespace Double_Ended_Q
                     newArray[newArrayCounter] = queue[i];
                     newArrayCounter++; //this starts at the center of the new array and works towards the RIGHT
                 }
+                hasLeftWrapped = false;
+                hasRightWrapped = false;
                 queue = newArray;
                 size = newArraySize;
             }
@@ -312,7 +333,8 @@ namespace Double_Ended_Q
         public bool IsEmpty()
         {
             bool isEmpty = false;
-            if (end1 == end2) //if the ends are equal, it means that there are no values
+            //end1 == end2 && IS A REMOVED CONDITION
+            if (hasLeftBeenUsed == false && hasRightBeenUsed == false) //if the ends are equal, it means that there are no values
             {
                 return isEmpty = true;
             }
@@ -329,6 +351,67 @@ namespace Double_Ended_Q
             else
             {
                 return isFull;
+            }
+        }
+
+        public string PrintQueueLeftToRight()
+        {
+            string output = "";
+            if (IsEmpty()==true)
+            {
+                output = "This queue is empty, nothing to print";
+                return output;
+            }
+            else
+            {
+                //check if array is wrapped around itself
+                if (this.IsWrapped == true)
+                {
+                    //use two for loops to:
+                        //print the wrapped LEFT SIDE values from end1 to (size-1)
+                        //print the wrapped RIGHT SIDE values from 0 to end2
+                    //left side values
+                    for (int i = end1; i < size; i++)
+                    {
+                        output += (this.Left).ToString() + " ";
+                    }
+                    //right side values
+                    for (int i = 0; i <= end2; i++)
+                    {
+                        if (i != end2)
+                        {
+                            output += (this.Left).ToString() + " ";
+                        }
+                        else
+                        {
+                            output += (this.Left).ToString();
+                        }
+                    }
+                    return output;
+                }
+                //check if array is full, since end1 and end2 will be a predictable distance from each other
+                else if(IsFull()==true)
+                {
+                    int midPoint = (size / 2);
+                    //if full, then end1 is on the left side and end2 is on the right side
+                    for (int i = 0; i < size; i++)
+                    {
+                        output += (this.Left).ToString() + " ";
+                    }
+                    /*for (int i = (midPoint + 1); i < (size-1); i++)
+                    {
+                        if (i != (size - 1))
+                            output += (this.Right).ToString() + " ";
+                        else
+                            output += (this.Right).ToString();
+                    }*/
+
+                    return output;
+                }
+                else
+                {
+                    throw new Exception("Error: queue could not be printed");
+                }
             }
         }
     }
