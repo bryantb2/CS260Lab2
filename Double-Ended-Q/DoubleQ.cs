@@ -119,10 +119,6 @@ namespace Double_Ended_Q
                     int endValue = queue[end2];
                     if (IsEmpty() != true)
                     {
-                        /*if (end1 < end2)//if on right side
-                        {
-                            end2--; //decrements right side left if not wrapped
-                        }*/
                         if ((end2 == 0 && IsWrapped == false) || end1 == end2)
                         {
                             end1 = arrayMidpoint; //resets to middle since it occupies the same spot as end2
@@ -389,13 +385,6 @@ namespace Double_Ended_Q
                     {
                         output += (this.Left).ToString() + " ";
                     }
-                    /*for (int i = (midPoint + 1); i < (size-1); i++)
-                    {
-                        if (i != (size - 1))
-                            output += (this.Right).ToString() + " ";
-                        else
-                            output += (this.Right).ToString();
-                    }*/
 
                     return output;
                 }
