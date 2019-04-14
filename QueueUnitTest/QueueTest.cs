@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace QueueUnitTest
 {
     [TestFixture]
-    public class Test
+    public class QueueTest
     {
         DoubleQ qDefault;
         DoubleQ qDefined;
@@ -83,10 +83,18 @@ namespace QueueUnitTest
             qDefined.Left = 7; 
             qDefined.Left = 17; //this should wrap the queue
             Assert.AreEqual(true, qDefined.IsWrapped);
+
             int leftValue = qDefined.Left;
             Assert.AreEqual(17, leftValue);
+
             leftValue = qDefined.Left;
             Assert.AreEqual(7, leftValue);
+            Assert.AreEqual(true, qDefined.IsWrapped);
+
+            for (int i = 0; i < 5; i++)
+            {
+                leftValue = qDefined.Left;
+            }
             Assert.AreEqual(false, qDefined.IsWrapped);
         }
 
@@ -133,19 +141,28 @@ namespace QueueUnitTest
         [Test]
         public void TestingRightSideWrap()
         {
-            //Testing to see if left side will wrap around array successfully
+            //Testing to see if right side will wrap around array successfully
             //Filling queue object via for loop
             for (int i = 0; i < 5; i++)
             {
                 qDefined.Right = i;
             }
-            qDefined.Right = 7;
-            qDefined.Right = 17; //this should wrap the queue
+            //now left side index must be moved to center
+            for (int i = 0; i < 4; i++)
+            {
+                int leftValue = qDefined.Left;
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                qDefined.Right = i;
+            }
             Assert.AreEqual(true, qDefined.IsWrapped);
+
             int rightValue = qDefined.Right;
-            Assert.AreEqual(17, rightValue);
+            Assert.AreEqual(5, rightValue);
+
             rightValue = qDefined.Right;
-            Assert.AreEqual(7, rightValue);
+            Assert.AreEqual(4, rightValue);
             Assert.AreEqual(false, qDefined.IsWrapped);
         }
 
@@ -177,16 +194,19 @@ namespace QueueUnitTest
         public void TestingWrappedQueue()
         {
             int originalSize = qDefined.Size;
-            for(int i = 0; i <qDefined.Size; i++)
+            qDefined.Right = -1;
+            qDefined.Right = -1;
+            int tempValue = qDefined.Left;
+            for(int i = 0; i <(qDefined.Size-1); i++)
             {
                 qDefined.Right = i;
             }
             Assert.AreEqual(true, qDefined.IsWrapped);
-            qDefined.Right = -1; //this should cause the wrapped
-            Assert.AreEqual(-1, qDefined.Right); //seeing if the end2 value is put in the right spot following the double
-            Assert.AreEqual(false, qDefined.IsWrapped); //determining that the array is no longer wrapped
-            Assert.AreEqual(qDefined.Size, (originalSize * 2)); //determing if the array doubled
+
+            tempValue = qDefined.Right;
+            Assert.AreEqual(false, qDefined.IsWrapped); //determining that the array is no longer
         }
+
         [Test]
         public void TestingWrappedQueueReturnBehavior()
         {
@@ -199,7 +219,7 @@ namespace QueueUnitTest
                 qDefined.Right = i;
                 originalInput[i] = i;
             }
-            Assert.AreEqual(true, qDefined.IsWrapped); //this should be true because end2 will wrap around to end1
+            Assert.AreEqual(false, qDefined.IsWrapped); //this should be true because end2 will wrap around to end1
             int[] finalOutput = new int[10];
             //now take queue values out and put into different array
             for (int i = 0; i < qDefined.Size; i++)
@@ -216,7 +236,7 @@ namespace QueueUnitTest
                 finalOutput[i] = swapValueTwo; //moves end value to front
                 finalOutput[qDefined.Size - (i + 1)] = swapValueOne;
             }
-            Assert.AreNotEqual(qDefined.Size, (originalSize * 2)); //checking to make sure array did not expand
+            Assert.AreEqual(qDefined.Size, originalSize); //checking to make sure array did not expand
             Assert.AreEqual(originalInput, finalOutput);
             Assert.AreEqual(finalOutput[9], originalInput[9]);
             Assert.AreEqual(finalOutput[0], originalInput[0]);

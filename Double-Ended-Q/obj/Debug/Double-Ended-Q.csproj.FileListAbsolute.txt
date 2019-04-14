@@ -4,3 +4,9 @@ D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\Double-Ended-Q\obj\Debug
 D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\Double-Ended-Q\obj\Debug\Double-Ended-Q.csproj.CoreCompileInputs.cache
 D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\Double-Ended-Q\obj\Debug\Double-Ended-Q.dll
 D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\Double-Ended-Q\obj\Debug\Double-Ended-Q.pdb
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\Double-Ended-Q\obj\Debug\Double-Ended-Q.csprojAssemblyReference.cache
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\Double-Ended-Q\obj\Debug\Double-Ended-Q.csproj.CoreCompileInputs.cache
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\Double-Ended-Q\obj\Debug\Double-Ended-Q.dll
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\Double-Ended-Q\obj\Debug\Double-Ended-Q.pdb
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\Double-Ended-Q\bin\Debug\Double-Ended-Q.dll
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\Double-Ended-Q\bin\Debug\Double-Ended-Q.pdb

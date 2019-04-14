@@ -14,3 +14,19 @@ D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\
 D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\NUnit3.TestAdapter.pdb
 D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\nunit.engine.dll
 D:\Random\LCC\CS260\Lab2\originalVersion\Double-Ended-Q\QueueUnitTest\bin\Debug\nunit.engine.api.dll
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\NUnit3.TestAdapter.dll
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\NUnit3.TestAdapter.pdb
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\nunit.engine.dll
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\nunit.engine.api.dll
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\QueueUnitTest.dll
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\QueueUnitTest.pdb
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\Double-Ended-Q.dll
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\nunit.framework.dll
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\Double-Ended-Q.pdb
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\nunit.framework.pdb
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\bin\Debug\nunit.framework.xml
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\obj\Debug\QueueUnitTest.csprojAssemblyReference.cache
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\obj\Debug\QueueUnitTest.csproj.CoreCompileInputs.cache
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\obj\Debug\QueueUnitTest.csproj.CopyComplete
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\obj\Debug\QueueUnitTest.dll
+E:\Random (HDD)\LCC CS\gitHubRepo\CS260\CS260Lab2\QueueUnitTest\obj\Debug\QueueUnitTest.pdb
